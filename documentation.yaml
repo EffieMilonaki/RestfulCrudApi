@@ -1,0 +1,67 @@
+info:
+  title: RestfulCrudApi
+  version: '1.0'
+  description: "Simple crud api in Laravel. Display the courses, edit/store/(soft)delete the specific course. All parameters are required and 'status' accepts two values (Published or Pending). 
+  url: "http://localhost/api"
+paths: 
+  /courses:
+    get:
+      summary: "Returns all the courses."
+    post:
+      summary: "Create/Store a new course"  
+      parameters:
+        title:
+          description: "Title of the course"
+          required: true
+          type: string
+        description:
+          description: "The description of the course"
+          required: true
+          type: text
+        status:
+          description: "The status of the course. It can be either Published or Pending"
+          required: true
+          type: enum
+        is_premium:
+          description: "Boolean value. The course may be premium or not."
+          required: true
+          type: boolean
+   
+  /courses/{id}:
+    get:
+      summary: "Show the specific course based on id"
+      parameters: 
+        id:
+          description: "id of the course"
+          type: integer
+    put:
+      summary: "Update the specific course based on id"
+        parameters: 
+          id:
+            description: "id of the course"
+            type: integer
+          title:
+            description: "Title of the course"
+            required: true
+            type: string
+          description:
+            description: "The description of the course"
+            required: true
+            type: text
+          status:
+            description: "The status of the course. It can be either Published or Pending"
+            required: true
+            type: enum
+          is_premium:
+            description: "Boolean value. The course may be premium or not."
+            required: true
+            type: boolean
+    delete:
+      summary: "Delete the specific course based on id"
+          parameters: 
+            id:
+              description: "id of the course"
+              type: integer
+        responses: 
+          202: 
+            description: "The request was accepted"
